@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Taleem.Api/Taleem.Api.csproj" />
+    <Project Path="src/Taleem.Application/Taleem.Application.csproj" />
+    <Project Path="src/Taleem.Domain/Taleem.Domain.csproj" />
+    <Project Path="src/Taleem.Infrastructure/Taleem.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Taleem.Tests/Taleem.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,99 @@
+# =============================================================================
+# Taleem monorepo — safe defaults for ASP.NET, Next.js, Android, Docker/local
+# =============================================================================
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.swp
+*~
+
+# --- Secrets / environment (keep examples) ---
+.env
+.env.*
+!.env.example
+!**/.env.example
+!**/.env.local.example
+**/appsettings.*.local.json
+**/secrets.json
+**/local.settings.json
+
+# --- .NET ---
+**/bin/
+**/obj/
+**/out/
+*.nupkg
+*.snupkg
+TestResults/
+*.dll
+*.exe
+*.pdb
+project.lock.json
+artifacts/
+
+# --- Node / Next.js ---
+**/node_modules/
+**/.next/
+**/dist/
+**/coverage/
+.turbo/
+.vercel/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Android ---
+**/.gradle/
+**/local.properties
+**/*.apk
+**/*.aab
+**/*.keystore
+**/*.jks
+!**/debug.keystore
+**/captures/
+**/android/**/build/
+**/.cxx/
+**/.kotlin/
+
+# --- Docker / local database volumes (never commit data dirs) ---
+**/pgdata/
+**/.docker-data/
+docker-data/
+
+# --- Uploaded source documents & runtime object storage ---
+# Only the API runtime upload folder — NOT Application/Infrastructure Storage source.
+backend/src/Taleem.Api/storage/*
+!backend/src/Taleem.Api/storage/.gitkeep
+**/uploads/
+**/*.pdf
+
+# --- Logs / temp / local QA dumps ---
+*.log
+logs/
+tmp/
+temp/
+**/tmp/
+tmp_qa_*.json
+*.tmp
+
+# --- Unrelated local projects accidentally living beside this repo ---
+expense-tracker/
+
+# --- Cursor / agent local ---
+.cursor/projects/
+agent-transcripts/
+
+# --- Python (tooling if any) ---
+__pycache__/
+*.pyc
+.venv/
+venv/

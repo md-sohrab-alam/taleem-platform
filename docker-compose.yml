@@ -1,0 +1,44 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: taleem-db
+    environment:
+      POSTGRES_DB: taleem
+      POSTGRES_USER: taleem
+      POSTGRES_PASSWORD: taleem
+    ports:
+      - "5432:5432"
+    volumes:
+      - taleem_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taleem -d taleem"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: taleem-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Default: Host=db;Port=5432;Database=taleem;Username=taleem;Password=taleem
+      Storage__RootPath: /app/storage
+      AdminAuth__Username: admin
+      AdminAuth__Password: changeme-dev-only
+      AdminAuth__JwtSigningKey: DEV_ONLY_CHANGE_ME_TO_A_LONG_RANDOM_SECRET_KEY_32+
+      CORS_ORIGINS: http://localhost:3000,http://localhost:3001
+      Embedding__Provider: fake
+    ports:
+      - "5080:8080"
+    volumes:
+      - taleem_storage:/app/storage
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  taleem_pgdata:
+  taleem_storage:
